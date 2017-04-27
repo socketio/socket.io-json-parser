@@ -1,0 +1,33 @@
+{
+  "name": "socket.io-json-parser",
+  "version": "1.0.0",
+  "description": "socket.io parser based on JSON.stringify / JSON.parse",
+  "main": "index.js",
+  "dependencies": {
+    "component-emitter": "1.2.1"
+  },
+  "devDependencies": {
+    "expect.js": "0.3.1",
+    "mocha": "3.2.0",
+    "semistandard": "9.2.1",
+    "socket.io": "github:socketio/socket.io",
+    "socket.io-client": "github:socketio/socket.io-client"
+  },
+  "scripts": {
+    "lint": "semistandard",
+    "test": "npm run lint && mocha test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darrachequesne/socket.io-json-parser.git"
+  },
+  "author": "Damien Arrachequesne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/darrachequesne/socket.io-json-parser/issues"
+  },
+  "homepage": "https://github.com/darrachequesne/socket.io-json-parser#readme",
+  "files": [
+    "index.js"
+  ]
+}
