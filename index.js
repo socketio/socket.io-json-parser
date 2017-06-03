@@ -1,41 +1,43 @@
 
-const Emitter = require('component-emitter');
+var Emitter = require('component-emitter');
 
 /**
  * Packet types (see https://github.com/socketio/socket.io-protocol)
  */
 
-const TYPES = {
-  CONNECT: 0,
-  DISCONNECT: 1,
-  EVENT: 2,
-  ACK: 3,
-  ERROR: 4,
-  BINARY_EVENT: 5,
-  BINARY_ACK: 6
-};
+exports.CONNECT = 0;
+exports.DISCONNECT = 1;
+exports.EVENT = 2;
+exports.ACK = 3;
+exports.ERROR = 4;
+exports.BINARY_EVENT = 5;
+exports.BINARY_ACK = 6;
 
-const errorPacket = {
-  type: TYPES.ERROR,
+var errorPacket = {
+  type: exports.ERROR,
   data: 'parser error'
 };
 
-class Encoder {
-  encode (packet, callback) {
-    return callback([ JSON.stringify(packet) ]);
-  }
-}
+function Encoder () {}
 
-class Decoder extends Emitter {
-  add (obj) {
-    try {
-      let decoded = JSON.parse(obj);
-      this.emit('decoded', decoded);
-    } catch (e) {
-      this.emit('decoded', errorPacket);
-    }
-  }
-  destroy () {}
-}
+Encoder.prototype.encode = function (packet, callback) {
+  return callback([ JSON.stringify(packet) ]);
+};
 
-module.exports = { Encoder, Decoder };
+function Decoder () {}
+
+Emitter(Decoder.prototype);
+
+Decoder.prototype.add = function (obj) {
+  try {
+    var decoded = JSON.parse(obj);
+    this.emit('decoded', decoded);
+  } catch (e) {
+    this.emit('decoded', errorPacket);
+  }
+};
+
+Decoder.prototype.destroy = function () {};
+
+exports.Encoder = Encoder;
+exports.Decoder = Decoder;
