@@ -1,3 +1,11 @@
+# [3.0.0](https://github.com/darrachequesne/socket.io-json-parser/compare/2.1.1...3.0.0) (2021-03-06)
+
+
+### Features
+
+* add support for Socket.IO v3 ([e7223ac](https://github.com/darrachequesne/socket.io-json-parser/commit/e7223ac84d563fc35de27bfef3b9b6fdb1c6db98))
+
+
 ## [2.1.1](https://github.com/darrachequesne/socket.io-json-parser/compare/2.1.0...2.1.1) (2020-09-28)
 
 
