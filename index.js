@@ -1,17 +1,19 @@
 
 var Emitter = require('component-emitter');
 
+exports.protocol = 5;
+
 /**
  * Packet types (see https://github.com/socketio/socket.io-protocol)
  */
 
-exports.CONNECT = 0;
-exports.DISCONNECT = 1;
-exports.EVENT = 2;
-exports.ACK = 3;
-exports.ERROR = 4;
-exports.BINARY_EVENT = 5;
-exports.BINARY_ACK = 6;
+var PacketType = (exports.PacketType = {
+  CONNECT: 0,
+  DISCONNECT: 1,
+  EVENT: 2,
+  ACK: 3,
+  CONNECT_ERROR: 4
+});
 
 var isInteger = Number.isInteger || function (value) {
   return typeof value === 'number' &&
@@ -21,10 +23,14 @@ var isInteger = Number.isInteger || function (value) {
 
 var isString = function (value) { return typeof value === 'string'; };
 
+var isObject = function (value) {
+  return Object.prototype.toString.call(value) === '[object Object]';
+};
+
 function Encoder () {}
 
-Encoder.prototype.encode = function (packet, callback) {
-  return callback([ JSON.stringify(packet) ]);
+Encoder.prototype.encode = function (packet) {
+  return [ JSON.stringify(packet) ];
 };
 
 function Decoder () {}
@@ -33,11 +39,12 @@ Emitter(Decoder.prototype);
 
 function isDataValid (decoded) {
   switch (decoded.type) {
-    case exports.CONNECT:
-    case exports.DISCONNECT:
+    case PacketType.CONNECT:
+      return decoded.data === undefined || isObject(decoded.data);
+    case PacketType.DISCONNECT:
       return decoded.data === undefined;
-    case exports.ERROR:
-      return isString(decoded.data);
+    case PacketType.CONNECT_ERROR:
+      return isObject(decoded.data);
     default:
       return Array.isArray(decoded.data);
   }
@@ -46,7 +53,7 @@ function isDataValid (decoded) {
 Decoder.prototype.add = function (obj) {
   var decoded = JSON.parse(obj);
 
-  var isTypeValid = isInteger(decoded.type) && decoded.type >= exports.CONNECT && decoded.type <= exports.BINARY_ACK;
+  var isTypeValid = isInteger(decoded.type) && decoded.type >= PacketType.CONNECT && decoded.type <= PacketType.CONNECT_ERROR;
   if (!isTypeValid) {
     throw new Error('invalid packet type');
   }
