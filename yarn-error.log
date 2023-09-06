@@ -1,0 +1,68 @@
+Arguments: 
+  /Users/vanost/.nvm/versions/node/v16.14.2/bin/node /Users/vanost/.node/corepack/yarn/1.22.15/bin/yarn.js add @meue/rsmq@0.12.0
+
+PATH: 
+  /Users/vanost/.nvm/versions/node/v16.14.2/bin:/Users/vanost/.nvm/versions/node/v18.16.0/bin:/Users/vanost/.nvm/versions/node/v18.16.0/bin:/Users/vanost/.nvm/versions/node/v18.17.1/bin:/Users/vanost/.nvm/versions/node/v18.17.1/bin:/Users/vanost/.nvm/versions/node/v16.14.2/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/go/bin:/Users/vanost/.nvm/versions/node/v16.14.2/bin:/opt/homebrew/bin:/opt/homebrew/sbin
+
+Yarn version: 
+  1.22.15
+
+Node version: 
+  16.14.2
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@meue%2frsmq: Not found
+      at Request.params.callback [as _callback] (/Users/vanost/.node/corepack/yarn/1.22.15/lib/cli.js:66140:18)
+      at Request.self.callback (/Users/vanost/.node/corepack/yarn/1.22.15/lib/cli.js:140885:22)
+      at Request.emit (node:events:526:28)
+      at Request.<anonymous> (/Users/vanost/.node/corepack/yarn/1.22.15/lib/cli.js:141857:10)
+      at Request.emit (node:events:526:28)
+      at IncomingMessage.<anonymous> (/Users/vanost/.node/corepack/yarn/1.22.15/lib/cli.js:141779:12)
+      at Object.onceWrapper (node:events:645:28)
+      at IncomingMessage.emit (node:events:538:35)
+      at endReadableNT (node:internal/streams/readable:1345:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  {
+    "name": "socket.io-json-parser",
+    "version": "3.0.0",
+    "description": "socket.io parser based on JSON.stringify / JSON.parse",
+    "main": "index",
+    "dependencies": {
+      "component-emitter": "~1.3.0"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1",
+      "mocha": "3.2.0",
+      "semistandard": "9.2.1",
+      "socket.io": "^3.1.2",
+      "socket.io-client": "^3.1.2"
+    },
+    "scripts": {
+      "lint": "semistandard",
+      "test": "npm run lint && mocha test/index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/darrachequesne/socket.io-json-parser.git"
+    },
+    "author": "Damien Arrachequesne",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/darrachequesne/socket.io-json-parser/issues"
+    },
+    "homepage": "https://github.com/darrachequesne/socket.io-json-parser#readme",
+    "files": [
+      "index.js"
+    ]
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
