@@ -50,6 +50,16 @@ function isDataValid (decoded) {
   }
 }
 
+function decode(buffer) {
+  const json = String.fromCharCode.apply(null, new Uint8Array(buffer));
+  return JSON.parse(json);
+}
+
+function encode(obj) {
+  const json = JSON.stringify(obj);
+  return Buffer.from(json);
+}
+
 Decoder.prototype.add = function (obj) {
   var decoded = JSON.parse(obj);
 
@@ -78,3 +88,5 @@ Decoder.prototype.destroy = function () {};
 
 exports.Encoder = Encoder;
 exports.Decoder = Decoder;
+exports.decode = decode;
+exports.encode = encode;
